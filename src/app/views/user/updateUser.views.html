@@ -1,0 +1,60 @@
+
+<div class="header col-lg-10" *ngIf="identity">
+        <h4>{{titulo}}</h4>
+        <div *ngIf="alertUpdate">     
+                <div class="alert alert-success" role="alert">
+                {{alertUpdate}}
+                </div>  
+              </div>    
+        <div class="userReg col-lg-9">
+            <form #userUpdateRegister="ngForm" class="col-lg-9" (ngSubmit)="onSubmit()">
+                <div class="imageForEdit" *ngIf="user.image != null">
+                    <img width="206" height="206" class="rounded-circle" src="{{url+ 'getImageUser/'+ user.image}}" height="190px"/>
+                </div>
+                <div class="form-row col-lg-10">
+                    <div class="form-group col-lg-6">
+                        <label for="name">Nombre</label>
+                        <input  #name="ngModel" [(ngModel)]="user.name" type="text" class="form-control" name="name1"
+                        placeholder="Nombre" required>
+                        <span *ngIf ="!name.valid && name.touched" class="badge badge-danger">
+                        *El nombre es obligatorio 
+                        </span>
+                </div>
+            
+                <div class="form-group col-lg-6">
+                    <label for="surname">Apellidos</label>
+                    <input #surname="ngModel" [(ngModel)]="user.surname" type="text" class="form-control" name="surname1"
+                    id="surname" placeholder="Apellidos" required>
+                    <span *ngIf ="!surname.valid && surname.touched" class="badge badge-danger">
+                        *Los apellidos son obligatorios 
+                        </span>
+                    </div>
+                
+                <div class="form-group col-lg-12">
+                    <label for="inputEmail">Correo Elétronico</label>
+                    <input #email="ngModel" [(ngModel)]="user.email" type="email" class="form-control" name="email1"
+                        id="inputEmail" placeholder="Correo Eléctronico" required>
+                    <span *ngIf ="!email.valid && email.touched" class="badge badge-danger">
+                        *El email es obligatorio 
+                    </span>
+                </div>
+                
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text " id="inputGroupFileAddon01"><fa name="image"></fa></span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01" 
+                        aria-describedby="inputGroupFileAddon01" (change)="fileChangeEvent($event)">
+                        <label class="custom-file-label" for="inputGroupFile01">Seleccionar archivo...</label>
+                    </div>
+                </div>           
+                        
+        </div>
+                <div class="buttons">
+                <button type="submit" class="btn btn-success">Actualizar</button>
+                </div>
+                </form>
+            </div>
+    </div>
+            

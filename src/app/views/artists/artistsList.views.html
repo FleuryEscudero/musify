@@ -1,0 +1,7 @@
+<div class="header" *ngIf="identity">
+    <h1>{{titulo}}</h1>
+</div>
+
+<div *ngIf ="identity.role=='roleAdministrator'" class="botonDefault">
+    <button type="button" class="btn btn-link" [routerLink]="['/addArtist']" routerLinkActive="activado" >Añadir Artista</button>
+</div>

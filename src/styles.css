@@ -1,1 +1,104 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+
+.page {
+    background: black;
+    height:1029px;
+    width: 1920px;
+}
+
+.header {
+    color:white;
+    
+}
+.nav {
+    color: white;
+}
+
+.nav li a {
+    color: white;
+}
+
+.nav li a:hover {
+    color:gray; 
+     
+ }
+.sidebar {
+    color:white;
+    height:900px;
+    width: 100%;
+    float:left;
+}
+
+#sidebar ul li a{
+    color:white;
+    text-align: center;
+}
+#sidebar ul li a:hover{
+    color:gray;
+}
+
+.container {
+   
+    color:white;
+    height:100%;
+    width: 100%;
+    float:right;
+}
+.buttonsLogin {
+    float: right;
+}
+
+.userReg{
+    float:right;
+    padding-top:1%;
+    color: white;
+    padding-left: 100%;
+    position: absolute;
+    height: 900px;
+    width: 900px;
+    left:7%;
+    top:100%
+}
+
+.buttons {
+    float: right;
+    padding-top: 25px;
+}
+
+.imageForEdit {
+    height: 250px;
+    width: 100px;
+    padding-left: 220px;    
+}
+
+.nav-link {
+    margin-top: 65px;
+}
+
+.activado {
+    border-bottom: 1px solid lightgreen;
+    padding-bottom: 4px;
+}
+.botonDefault button {
+    color: white;
+}
+.botonDefault button:hover {
+    color: gray;
+    text-decoration:none;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+.row {
+    margin-left: 200px;
+}
+.card {
+    position: absolute;
+    margin-left:10px;
+    text-align: center;
+}
