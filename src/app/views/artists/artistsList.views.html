@@ -1,7 +1,35 @@
 <div class="header" *ngIf="identity">
     <h1>{{titulo}}</h1>
 </div>
+    <div *ngIf ="identity.role=='roleAdministrator'" class="botonDefault">
+        <button type="button" class="btn btn-link" [routerLink]="['/addArtist']" routerLinkActive="activado" >Añadir Artista</button>
+    </div>
 
-<div *ngIf ="identity.role=='roleAdministrator'" class="botonDefault">
-    <button type="button" class="btn btn-link" [routerLink]="['/addArtist']" routerLinkActive="activado" >Añadir Artista</button>
-</div>
+    <div class="container" *ngIf="identity">
+
+    <div class="row clearfix"></div>
+        <mat-card *ngFor="let artist of artists" class="example-card col-lg-3">
+            <mat-card-header>
+                <mat-card-title>{{artist.name}}</mat-card-title>
+                <mat-card-subtitle>{{artist.description}}</mat-card-subtitle>
+            </mat-card-header>
+            <img width="206" height="206" class="rounded-circle" mat-card-image src="{{url+ 'getImageArtist/'+ artist.image}}" alt="Artist Photo">
+            <mat-card-actions>
+                <button mat-button [routerLink]="['/editArtist', artist._id]" *ngIf="identity.role == 'roleAdministrator'">Editar</button>
+                <button mat-button *ngIf="identity.role == 'roleAdministrator'">Borrar</button>
+            </mat-card-actions>
+        </mat-card>
+              
+        <nav aria-label="Page navigation example">
+            <ul class="pagination pull-right justify-content-end">
+                <li class="page-item enabled">
+                <a class="page-link" [routerLink]="['/artistas', prevPage]" routerLinkActive="activado" tabindex="-1" aria-disabled="true">&laquo;</a>
+                </li>
+                <li class="page-item">
+                <a class="page-link" [routerLink]="['/artistas', nextPage]" routerLinkActive="activado">&raquo;</a>
+                </li>
+            </ul>
+        </nav>
+            
+    </div>
+    

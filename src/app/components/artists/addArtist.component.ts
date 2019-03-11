@@ -1,5 +1,5 @@
 import {Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router'; 
+import { Router, ActivatedRoute,Params } from '@angular/router'; 
 import { GLOBAL } from '../../services/global';
 import { UserService } from '../../services/user.service';
 import { Artist } from '../../models/artist.models';
@@ -42,28 +42,29 @@ export class addArtistComponent implements OnInit {
 }
 
 
-    public onSubmit (){
+     onSubmit (){
         console.log(this.artist);
         this._artistService.addArtist(this.token,this.artist).subscribe (
             response => {
-                console.log(response);
-                let artist = response.artist;
-                localStorage.setItem('token', JSON.stringify(this.token));
-                this.artist=artist;
-                console.log(this.filesToUpload);
-                if (!this.filesToUpload){
-                    alert ('La imagen del artista no es valida')
-                }else {
-                    //esperar al curso
-                }
+                    if (!response.artist){
+                        this.alertMessage='Error en el servidor';
+                    }else { 
+                        this.alertMessage='El artista se ha creado correctamente';
+                        let artist = response.artist;
+                        this._router.navigate(['/editArtist', response.artist._id]);
+                        localStorage.setItem('token', JSON.stringify(this.token));
+                        this.artist=artist;
+                        console.log(this.filesToUpload);
 
-                if(!artist._id){
-                    alert('Error al registrar el artista');
-                    this.alertMessage = "Error al registrar el artista"
-                }else {
-                    this.alertMessage = "El artista fue registraod de manera correcta";
-                    this.artist = new Artist ('','','');
-                }
+                        if(!artist._id){
+                            alert('Error al registrar el artista');
+                            this.alertMessage = "Error al registrar el artista"
+                        }else {
+                            this.alertMessage = "El artista fue registrado de manera correcta";
+                            this.artist = new Artist ('','','');
+                        }
+                    }
+                
 
 
             },

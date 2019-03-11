@@ -8,6 +8,7 @@ import { registerUserComponent } from '../components/user/registerUser.component
 import { updateUserComponent } from '../components/user/updateUser.component';
 import { homeComponent } from '../components/home/home.component';
 import { addArtistComponent } from '../components/artists/addArtist.component';
+import { editArtistComponent } from '../components/artists/editArtist.component';
 import { AppComponent } from 'src/app/app.component';
 
 
@@ -19,6 +20,7 @@ const appRoutes:Routes = [
     {path:'registerUser', component:registerUserComponent},
     {path:'artistsLists/:page', component:artistListComponent},
     {path:'addArtist', component:addArtistComponent},
+    {path:'editArtist/:id', component:editArtistComponent},
     {path:'**', component:artistListComponent}
 ]
 

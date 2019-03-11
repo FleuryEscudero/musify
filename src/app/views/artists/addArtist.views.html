@@ -1,35 +1,44 @@
-<div class="header" >
+<div *ngIf="identity && identity.role=='roleAdministrator'" class="header" >
     <h4><strong>Añadir Artista</strong></h4>
 </div>
-
-<div class="container">
+    
+<div *ngIf="identity && identity.role=='roleAdministrator'" class="container">
+    <div *ngIf="alertMessage">     
+        <div class="alert alert-success" role="alert">
+        {{alertMessage}}
+        </div>  
+    </div>
     <form #formArtist="ngForm" class="col-lg-10" (ngSubmit)="onSubmit()">
         <div class="container">
-            <div class="imageForEdit" *ngIf="user.image != null">
-                <img width="206" height="206" class="rounded-circle" src="{{url+ 'getImageArtist/'+ artist.image}}" height="190px"/>
-            </div>
+            <div *ngIf="isEdit">
+                <div class="imageForEdit" *ngIf="artist.image && artist.image != 'null'">
+                    <img width="206" height="206" class="rounded-circle" src="{{url+ 'getImageArtist/'+ artist.image}}" height="190px"/>
+                </div>
+            </div>  
             <div class="form-group">
-                <label for="name">Nombre del Artista</label>
-                <input  #name="ngModel" [(ngModel)]="artist.name" type="text" class="form-control" name="name1"
-                placeholder="Nombre del artista" required>
+                <mat-form-field class="col-lg-12">
+                    <input  matInput #name="ngModel" [(ngModel)]="artist.name" type="text" class="form-control" name="name1"
+                    placeholder="Nombre del artista" required>
+                </mat-form-field>
                 <span *ngIf ="!name.valid && name.touched" class="badge badge-danger">
                     *El nombre del artista es obligatorio 
                 </span>
             </div>
             
             <div class="form-group">
-                    <label for="description">Descripción</label>
-                <textarea  #name="ngModel" [(ngModel)]="artist.description" type="text" class="form-control" name="description1"
-                placeholder="Descripción"></textarea>
+                <mat-form-field class="col-lg-12">
+                    <textarea  matInput #name="ngModel" [(ngModel)]="artist.description" type="text" class="form-control" name="description1"
+                    placeholder="Descripción"></textarea>
+                </mat-form-field>
             </div>
 
-            <div class="input-group">
+            <div *ngIf="isEdit" class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text " id="inputGroupFileAddon01"><fa name="image"></fa></span>
                 </div>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="inputGroupFile01" 
-                    aria-describedby="inputGroupFileAddon01" (change)="fileChangeEvent($event)">
+                    aria-describedby="inputGroupFileAddon01" (change)="artistFileChangeEvent($event)">
                     <label class="custom-file-label" for="inputGroupFile01">Seleccionar archivo...</label>
                 </div>
             </div>  
@@ -39,4 +48,12 @@
         
         </div>
     </form>
+</div>
+
+
+<div *ngIf="!identity || identity.role !='roleAdministrator'" class="header" >
+    <h1>Error</h1>
+    <p>
+        No tienes acceso a esta parte de la aplicación
+    </p>
 </div>

@@ -2,25 +2,26 @@
   
   <div class="nav">
       <div class="sidebar-header col col-lg-1">
-          <h4><fa name="music"></fa> Musify</h4>
+          <h4><mat-icon [inline]="true">music_note</mat-icon> Musify</h4>
       </div>
       <div class="col col-lg-11"> 
           <ul class="nav justify-content-end">
               <li *ngIf="identity" class="nav-item " > 
-                <a id="identityName" class="nav-link " href="#"><img width="25" height="25" class="rounded-circle" src="{{url+ 'getImageUser/'+ identity.image}}"/><small>{{identity.name}} {{identity.surname}}</small></a>
+                <a id="identityName" class="nav-link1 " href="#"><img width="25" height="25" class="rounded-circle" src="{{url+ 'getImageUser/'+ identity.image}}"/><small>{{identity.name}} {{identity.surname}}</small></a>
               </li>
-                <a *ngIf="identity" class="nav-link"><small>|</small></a>
+                <a *ngIf="identity" class="nav-link2"><small>|</small></a>
               <li *ngIf="identity" class="nav-item">
-                <a *ngIf="identity" class="nav-link" [routerLink]="['/updateUser']" 
+                <a *ngIf="identity" class="nav-link1" [routerLink]="['/updateUser']" 
                 [routerLinkActive]="['activado']"><fa name="id-card"></fa>
                 <small> Mis datos</small></a>
               </li>
-                <a *ngIf="identity" class="nav-link"><small>|</small></a>
+                <a *ngIf="identity" class="nav-link2"><small>|</small></a>
               <li *ngIf="identity" class="nav-item">
-                <a class="nav-link" href="#" (click)="logout()"><fa name="sign-out"></fa><small>Salir</small></a>
+                <a class="nav-link1" href="#" (click)="logout()"><fa name="sign-out"></fa><small>Salir</small></a>
               </li> 
               <li *ngIf="!identity" class="nav-item">
-                  <a class="nav-link" (click)="clickRegister()" [routerLink]="['/registerUser']" [routerLinkActive]="['activado']" ><fa name="register"></fa><small>Registrarse</small></a>
+                  <a class="nav-link" (click)="clickRegister()" [routerLink]="['/registerUser']" [routerLinkActive]="['activado']" >
+                    <mat-icon>person_add</mat-icon><small>Registrarse</small></a>
                 </li> 
           </ul>
       </div>
@@ -31,16 +32,19 @@
         <hr/><br>
         <ul class="list-unstyled components">
           <li>
-            <a aria-expanded="false" class="nav-link" href="#"><fa  fixed="true" size="3x" name="search" ></fa><strong>Buscar</strong></a>
+            <a aria-expanded="false" class="nav-link" href="#">
+              <mat-icon class="iconsSb" style="font-size: 50px">search</mat-icon>
+              <strong>Buscar</strong></a>
           </li>
           <li>
-            <a aria-expanded="false" class="nav-link" [routerLink]="['/artistsList',1]" [routerLinkActive]="['activado']" ><fa fixed="true" size="3x" name="user"></fa><strong>Artistas</strong></a>
+            <a aria-expanded="false" class="nav-link" [routerLink]="['/artistsList',1]" [routerLinkActive]="['activado']" >
+              <mat-icon class="iconsSb" fixed="true" style="font-size: 50px">person</mat-icon ><strong>Artistas</strong></a>
           </li>
           <li>
-            <a aria-expanded="false" class="nav-link" href="#"><fa fixed="true" size="3x" name="book"></fa> <strong>Albums</strong></a>
+            <a aria-expanded="false" class="nav-link" href="#"><mat-icon class ="iconsSb" style="font-size: 50px">album</mat-icon> <strong>Albums</strong></a>
           </li>
           <li> 
-            <a aria-expanded="false" class="nav-link" href="#"><fa fixed="true" size="3x" name="music"></fa> <strong>Canciones</strong></a>
+            <a aria-expanded="false" class="nav-link" href="#"><mat-icon class ="iconsSb" style="font-size: 50px">music_note</mat-icon> <strong>Canciones</strong></a>
           </li>
           </ul>
       </nav>
@@ -49,22 +53,23 @@
     <div *ngIf="identity" class="central col-lg-11">
         <router-outlet></router-outlet>
     </div>
-
-  <div *ngIf="!identity"class="container col-lg-12">
-    <form #loginForm="ngForm" class="col-lg-4" (ngSubmit)="onSubmit()" >
-        <div class="form-group col-auto p-3 mb-2">
-          <label for="exampleInputEmail1">Correo Eléctronico</label>
-            <input type="email" #email="ngModel" name="email" [(ngModel)]="user.email"   
-            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
-            placeholder="Correo Eléctronico" required>
-              <span *ngIf="!email.valid && email.touched" class="badge badge-danger">
-                  *El email es obligatorio
-              </span>
+    <div *ngIf="!identity" class="col-lg-12"></div>
+  <div *ngIf="!identity"class="container col-lg-8 ">
+    <form #loginForm="ngForm" class="loginForm col-lg-12" (ngSubmit)="onSubmit()" >
+        <div class="form-group col-auto p-3 mb-2">           
+          <mat-form-field>
+            <input matInput type="email" #email="ngModel" name="email" [(ngModel)]="user.email"   
+              class="form-control col-lg-12" id="exampleInputEmail1" placeholder="Correo Eléctronico" required>                 
+          </mat-form-field>
+          <span *ngIf="!email.valid && email.touched" class="badge badge-danger">
+              *El email es obligatorio
+          </span>  
         </div>
         <div class="form-group col-auto p-3 mb-2">
-          <label for="exampleInputPassword1">Contraseña</label>
-            <input #password="ngModel"  [(ngModel)]="user.password" name="password" type="password" 
+          <mat-form-field>
+            <input matInput type="password" #password="ngModel" name="password" [(ngModel)]="user.password" 
             class="form-control" id="exampleInputPassword1" placeholder="Contraseña" required>
+          </mat-form-field>
               <span *ngIf="!password.valid && password.touched" class="badge badge-danger">
                   *La contraseña es obligatoria
               </span>
@@ -77,8 +82,6 @@
         </div>  
       </form>
 
-  </div>
-
-  
+  </div> 
 
 </div>
