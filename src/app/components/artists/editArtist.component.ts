@@ -108,7 +108,7 @@ getArtist (){
         });
     }
 
-    artistFileChangeEvent(fileInput: any){
+    public artistFileChangeEvent(fileInput: any){
         this.filesToUpload = <Array<File>>fileInput.target.files;
         console.log(this.filesToUpload)
       }

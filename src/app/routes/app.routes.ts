@@ -9,6 +9,10 @@ import { updateUserComponent } from '../components/user/updateUser.component';
 import { homeComponent } from '../components/home/home.component';
 import { addArtistComponent } from '../components/artists/addArtist.component';
 import { editArtistComponent } from '../components/artists/editArtist.component';
+import { detailArtistComponent} from '../components/artists/detailsArtist.component';
+import { addAlbumComponent} from '../components/albums/addAlbum.component';
+import { albumListComponent } from '../components/albums/albumList.component';
+import { editAlbumComponent } from '../components/albums/editAlbum.component';
 import { AppComponent } from 'src/app/app.component';
 
 
@@ -21,7 +25,12 @@ const appRoutes:Routes = [
     {path:'artistsLists/:page', component:artistListComponent},
     {path:'addArtist', component:addArtistComponent},
     {path:'editArtist/:id', component:editArtistComponent},
+    {path:'detailArtist/:id', component:detailArtistComponent},
+    {path:'newAlbum/:artist', component:addAlbumComponent},
+    {path:'albumList/', component:albumListComponent},
+    {path:'editAlbum/:id', component:editAlbumComponent},
     {path:'**', component:artistListComponent}
+
 ]
 
 /**Exportar las constantes para activar el ruteo de angular */

@@ -4,7 +4,6 @@ import { map } from "rxjs/operators";
 import { Observable } from 'rxjs';
 import { GLOBAL } from './global';
 import { Artist } from '../models/artist.models';
-import { Options } from 'selenium-webdriver/safari';
 
 @Injectable ()
 
@@ -18,12 +17,12 @@ constructor (
     this.url=GLOBAL.url;
 }
 
-getArtists (token, page){
+getArtists (token, page): Observable<any>{
     let headers = new HttpHeaders ({'Content-Type':'application/json', 'Authorization':token,});
     return this.http.get(this.url + 'artists/'+ page, {headers:headers});
 }
 
-getArtist (token, id: string){
+getArtist (token, id: string): Observable<any>{
     let headers = new HttpHeaders ({'Content-Type':'application/json', 'Authorization':token,});
     return this.http.get(this.url + 'artist/'+ id, {headers:headers});
 }
@@ -36,7 +35,7 @@ addArtist (token, artist: Artist){
 
 }
 
-updateArtist (token, id: string, artist: Artist){
+updateArtist (token, id: string, artist: Artist): Observable<any>{
     let params = JSON.stringify(artist);
     let headers = new HttpHeaders ({'Content-Type':'application/json', 'Authorization':token});
     console.log(artist);
@@ -44,9 +43,9 @@ updateArtist (token, id: string, artist: Artist){
 
 }
 
-deleteArtist (token, id: string){
+deleteArtist (token, id: string): Observable<any>{
     let headers = new HttpHeaders ({'Content-Type':'application/json', 'Authorization':token,});
-    return this.http.delete(this.url + 'artists/'+ id, {headers:headers});
+    return this.http.delete(this.url + 'artist/'+ id, {headers:headers});
 }
 
 }

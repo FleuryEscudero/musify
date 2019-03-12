@@ -1,0 +1,86 @@
+<div class="header" *ngIf="identity">
+        <h1>{{titulo}}</h1>
+</div>
+<div class="container col-lg-8">
+        <div *ngIf="alertMessage">     
+                <div class="alert alert-success" role="alert">
+                {{alertMessage}}
+                </div>  
+        </div>
+        <div *ngIf="!isEdit">
+                <img width="206" height="206" class="rounded-circle"
+                mat-card-image src="{{url+ 'getImageArtist/'+ artist.image}}" alt="Artist Photo">
+        </div>
+        <div *ngIf="isEdit">
+                        <img width="206" height="206"
+                        mat-card-image src="{{url+ 'getImageAlbum/'+ album.image}}" alt="Artist Photo">
+                </div>
+<form #newAlbumForm="ngForm" class="newAlbumForm " (ngSubmit)="onSubmit()">
+          <br/>     
+        <mat-form-field *ngIf="!isEdit" class="example-full-width col-lg-4">
+                <input matInput  placeholder="Artista" disabled  value="{{artist.name}}"> 
+        </mat-form-field>
+        <mat-form-field *ngIf="isEdit" class="example-full-width col-lg-4">
+                <input matInput  placeholder="Artista" disabled  value="{{album.artist.name}}"> 
+        </mat-form-field>
+        
+        <table class="col-lg-4" cellspacing="0">
+                <tr>
+                        <td>
+                        <mat-form-field class="Titulo col-lg-12">
+                        <input class="inputForm" matInput #title="ngModel" name="title" placeholder="Titulo" 
+                                [(ngModel)]="album.title" required>
+                                <button mat-button *ngIf="album.title" matSuffix mat-icon-button aria-label="Clear"
+                                        (click)="album.title=''">
+                                        <mat-icon>close</mat-icon>       
+                                </button>
+                        </mat-form-field>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                        <mat-form-field class="Descripción col-lg-12">
+                        <input class="inputForm" matInput #description="ngModel" name="description" placeholder="Descripción" 
+                                [(ngModel)]="album.description" name="description">
+                                <button mat-button *ngIf="album.description" matSuffix mat-icon-button aria-label="Clear" 
+                                (click)="album.description=''">
+                                        <mat-icon>close</mat-icon>       
+                        </button>
+                        </mat-form-field>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                        <mat-form-field class="anio col-lg-4">
+                        <input  class="inputForm" matInput placeholder="Año" #description="ngModel" name="year"
+                                [(ngModel)]="album.year" name="year">
+                                <button mat-button *ngIf="album.year" matSuffix mat-icon-button aria-label="Clear" 
+                                (click)="album.year=''">
+                                        <mat-icon>close</mat-icon>       
+                        </button>
+                        </mat-form-field>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                        <div *ngIf="isEdit">
+                                <p>
+                                <label>Sube la imagen</label>
+                                <Input type="file" placeholder="Subir Imagen..." (change)="albumFileChangeEvent($event)"/>
+                                </p>
+                        <br>
+                
+                        </div>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                           <button  type="button submit" value="{{titulo}}" 
+                           [disabled]="!title" class=" btn btn-success">Entrar</button>
+                        </td>
+                </tr>
+                
+        </table>
+       
+        </form>
+</div>

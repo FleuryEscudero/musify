@@ -1,0 +1,22 @@
+<div class="header">
+        <div *ngIf="artist" class="ArtistBox col-lg-10 row" style="text-align:center" >
+                <div class="col-lg-3">
+                <img style="align-content: center" width="150" height="150" class="rounded-circle" mat-card-image src="{{url+ 'getImageArtist/'+ artist.image}}">
+                <h3>{{artist.name}}</h3>
+                <p>{{artist.description}}</p>
+                <div *ngIf ="identity.role=='roleAdministrator'" class="botonDefault">
+                    <button type="button" class="btnAdd btn btn-link" 
+                    [routerLink]="['/newAlbum', artist._id]"><mat-icon >album</mat-icon>+</button>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <h5>Albums</h5>
+            <hr style="border:1px solid; color:rgb(37, 36, 36)"/>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div id="galleryAlbums" *ngIf="albums">
+            <!-- listar los albums -->
+                hola
+        </div>
+</div>

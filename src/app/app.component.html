@@ -20,7 +20,7 @@
                 <a class="nav-link1" href="#" (click)="logout()"><fa name="sign-out"></fa><small>Salir</small></a>
               </li> 
               <li *ngIf="!identity" class="nav-item">
-                  <a class="nav-link" (click)="clickRegister()" [routerLink]="['/registerUser']" [routerLinkActive]="['activado']" >
+                  <a class="nav-link2" (click)="clickRegister()" [routerLink]="['/registerUser']" [routerLinkActive]="['activado']" >
                     <mat-icon>person_add</mat-icon><small>Registrarse</small></a>
                 </li> 
           </ul>
@@ -38,10 +38,13 @@
           </li>
           <li>
             <a aria-expanded="false" class="nav-link" [routerLink]="['/artistsList',1]" [routerLinkActive]="['activado']" >
-              <mat-icon class="iconsSb" fixed="true" style="font-size: 50px">person</mat-icon ><strong>Artistas</strong></a>
+              <mat-icon class="iconsSb" fixed="true" style="font-size: 50px">person</mat-icon >
+                <strong>Artistas</strong></a>
           </li>
           <li>
-            <a aria-expanded="false" class="nav-link" href="#"><mat-icon class ="iconsSb" style="font-size: 50px">album</mat-icon> <strong>Albums</strong></a>
+            <a aria-expanded="false" class="nav-link"[routerLink]="['/albumList']" [routerLinkActive]="['activado']">
+              <mat-icon class ="iconsSb" style="font-size: 50px">album</mat-icon> 
+              <strong>Albums</strong></a>
           </li>
           <li> 
             <a aria-expanded="false" class="nav-link" href="#"><mat-icon class ="iconsSb" style="font-size: 50px">music_note</mat-icon> <strong>Canciones</strong></a>

@@ -16,6 +16,7 @@ constructor (
 }
 
 imageRequest(url: string, params: Array<string>, files: Array<File>,token: string, name:string){
+    // debugger;
     return new Promise (function(resolve, reject){
     var formData: any = new FormData();
     var xhr = new XMLHttpRequest();
@@ -33,8 +34,12 @@ imageRequest(url: string, params: Array<string>, files: Array<File>,token: strin
             }
         }
     }
+
+     xhr.open('POST',url,true);
+     xhr.setRequestHeader('Authorization',token);
+     xhr.send(formData);
     }
-    )
+    );
 }
 
 }
