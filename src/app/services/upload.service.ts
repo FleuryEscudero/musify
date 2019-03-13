@@ -15,15 +15,16 @@ constructor (
     this.url=GLOBAL.url;
 }
 
-imageRequest(url: string, params: Array<string>, files: Array<File>,token: string, name:string){
-    // debugger;
+imageRequest(url: string, params: Array<string>, file: File,token: string, name:string){
+   
     return new Promise (function(resolve, reject){
     var formData: any = new FormData();
     var xhr = new XMLHttpRequest();
 
-    for (var i = 0; i >files.length; i++){
-        formData.append(name, files [i], files[i].name);
-    }
+    // for (var i = 0; i >files.length; i++){
+    //     formData.append(name, files [i], files[i].name);
+    // }
+    formData.append('image', file, file.name);
 
     xhr.onreadystatechange = function (){
         if(xhr.readyState ==4){

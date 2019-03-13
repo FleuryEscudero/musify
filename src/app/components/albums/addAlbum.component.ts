@@ -58,13 +58,14 @@ public value;
             //esta sentencia inyecta la informacion a la base de datos
             this._albumService.addAlbum(this.token, this.album).subscribe(
                 response => {
-                    debugger;
+                    //debugger;
                     if (!response.album){
-                        this.alertMessage='El album se ha creado correctamente';
+                        this.alertMessage='El album no se ha creado';
                     }else { 
                         this.alertMessage='El album se ha creado correctamente';
                         this.album = response.album;
-                        //this._router.navigate(['/editArtist', response.album._id]);
+
+                        this._router.navigate(['/editAlbum', this.album._id]);
                     }
             },
             error => {

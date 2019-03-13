@@ -22,9 +22,14 @@ getAlbum (token, id: string): Observable<any>{
     return this.http.get(this.url + 'album/'+ id, {headers:headers});
 }
 
-getAlbums (token, album: string): Observable<any>{
+getAlbums (token, artistId = null): Observable<any>{
     let headers = new HttpHeaders ({'Content-Type':'application/json', 'Authorization':token,});
-    return this.http.get(this.url + 'albums/'+ album, {headers:headers});
+    if (artistId == null){
+        return this.http.get(this.url + 'albums/', {headers:headers});
+    }else {
+        return this.http.get(this.url + 'albums/'+ artistId, {headers:headers});
+    }
+    
 }
 
 addAlbum (token, album:Album ){

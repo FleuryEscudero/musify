@@ -57,6 +57,7 @@ export class artistListComponent implements OnInit {
 }
 
  getArtistsList (){
+     //debugger;
     this._route.params.forEach((params: Params) =>{
         let page = + params['page'];
         if (!page){

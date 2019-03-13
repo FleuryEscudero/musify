@@ -4,17 +4,23 @@ import { GLOBAL } from '../../services/global';
 import { UserService } from '../../services/user.service';
 import { Artist } from '../../models/artist.models';
 import { ArtistService} from '../../services/artist.service';
+import { AlbumService } from '../../services/album.service';
+import { Album } from '../../models/album.models';
+
+
 
 @Component ({
     selector:'detailArtist',
     templateUrl:'../../views/artists/detailArtist.views.html',
-    providers: [UserService, ArtistService]
+    providers: [UserService, ArtistService,AlbumService]
 })
 
 export class detailArtistComponent implements OnInit {
 
     public titulo: string;
     public artist: Artist;
+    public album: Album;
+    public albums: Album[];
     public identity;
     public token;
     public url;
@@ -25,6 +31,7 @@ export class detailArtistComponent implements OnInit {
     constructor (
         private _userService:UserService,
         private _artistService:ArtistService,
+        private _albumService:AlbumService,
         private _route: ActivatedRoute,
         private _router: Router
     ){
@@ -55,6 +62,23 @@ getArtist (){
                     this.artist = response.artist;
 
                     //sacar los albums del artista
+                    this._albumService.getAlbums(this.token, response.artist._id).subscribe(
+                        response =>{
+                                this.alertMessage="Este artista no tiene albums";
+                            if (!response.albums){
+
+                            }else {
+                                this.albums= response.albums;
+                            }
+                        },
+                        error =>{
+                            var errorMessage =<any>error;
+                                if(errorMessage != null){ 
+                                console.log(error);
+                                // this.alertMessage = error.error.message;
+                                }
+                        }
+                    )
                 }
 
             },

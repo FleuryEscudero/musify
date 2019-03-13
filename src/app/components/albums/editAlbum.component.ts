@@ -39,6 +39,7 @@ export class editAlbumComponent implements OnInit {
         this.identity= this._userService.getIdentity();
         this.token= this._userService.getToken();
         this.url = GLOBAL.url;
+        this.artist = new Artist ('','','');
         this.album = new Album ('','',2017,'','');
         this.artist = new Artist ('','','');
         this.isEdit=true;
@@ -69,17 +70,25 @@ public value;
                         
                     }else { 
                         this.alertMessage='El album se ha creado correctamente';
-                        this._uploadService.imageRequest(this.url+'uploadImageAlbum/'+id, [],
-                        this.filesToUpload,this.token, "image")
+                        if (!this.filesToUpload){
+                            //Redirigir
+                            this._router.navigate(['/artist/',response.album.artist]);
+                            console.log(response.album.artist);
+                        }else {
+                            //subir imagen
+                            this._uploadService.imageRequest(this.url+'uploadImageAlbum/'+id, [],
+                            this.filesToUpload,this.token, "image")
                                .then(
                                    (response)=> {
-                                       console.log(response);
-                                       this._router.navigate(['/artist/',this.album.artist]);
+                                       
+                                       this._router.navigate(['/detailArtist/',this.album.artist._id]);
                                    },(error) =>{
                                        console.log(error);
                                    }
                                );
-                        //subir imagen
+                        }
+                        
+                        
                        
                     }
             },
@@ -103,8 +112,6 @@ public value;
           this._albumService.getAlbum(this.token, albumId).subscribe(
               response=>{
                 this.album=response.album;
-                console.log(this.album);
-                console.log(this.album.artist);
               },
               error =>{
                  var errorMessage =<any>error;
@@ -118,7 +125,7 @@ public value;
   }
 
   albumFileChangeEvent(fileInput: any){
-        this.filesToUpload = <Array<File>>fileInput.target.files;
+        this.filesToUpload = <File>fileInput.target.files[0];
         console.log(this.filesToUpload)
   }
 }

@@ -21,7 +21,7 @@ export class editArtistComponent implements OnInit {
     public url;
     public alertMessage;
     public isEdit;
-    public filesToUpload: Array<File>;
+    public filesToUpload: File;
     
 
 
@@ -108,8 +108,8 @@ getArtist (){
         });
     }
 
-    public artistFileChangeEvent(fileInput: any){
-        this.filesToUpload = <Array<File>>fileInput.target.files;
+    artistFileChangeEvent(fileInput: any){
+        this.filesToUpload = <File>fileInput.target.files[0];
         console.log(this.filesToUpload)
       }
       

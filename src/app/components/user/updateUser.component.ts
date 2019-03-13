@@ -20,7 +20,8 @@ export class updateUserComponent implements OnInit {
     public identity;
     public token;
     public alertUpdate;
-    public filesToUpload: Array<File>;
+    //public filesToUpload: Array<File>;
+    public filesToUpload: File;
     public url: string;
 
 
@@ -91,19 +92,20 @@ export class updateUserComponent implements OnInit {
     }
 
     fileChangeEvent(fileInput: any){
-        this.filesToUpload = <Array<File>>fileInput.target.files;
+        this.filesToUpload = <File>fileInput.target.files[0];
         console.log(this.filesToUpload)
       }
       
-    imageRequest(url: string, params: Array<string>, files: Array<File>){
+    imageRequest(url: string, params: Array<string>, file: File){
         let token = this.token;
         return new Promise (function(resolve, reject){
         var formData: any = new FormData();
         var xhr = new XMLHttpRequest();
     
-        for (var i = 0; i >files.length; i++){
-            formData.append('image', files [i], files[i].name);
-        }
+        /*for (var i = 0; i >files.length; i++){
+            formData.append('image', files[i], files[i].name);
+        }*/
+        formData.append('image', file, file.name);
     
         xhr.onreadystatechange = function (){
             if(xhr.readyState ==4){

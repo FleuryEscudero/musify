@@ -12,11 +12,25 @@
             <div class="col-lg-8">
                 <h5>Albums</h5>
             <hr style="border:1px solid; color:rgb(37, 36, 36)"/>
+            <mat-card *ngFor="let album of albums" class="example-card col-lg-3">
+                <mat-card-header>
+                    <mat-card-title>{{album.name}}</mat-card-title>
+                    <mat-card-subtitle>{{album.description}}</mat-card-subtitle>
+                </mat-card-header>
+                <a [routerLink]="['/detailArtist/', artist._id]"><img width="206" height="206" class="rounded-circle" mat-card-image src="{{url+ 'getImageAlbum/'+ album.image}}" alt="Album Photo"></a>
+                <mat-card-actions>
+                    <button mat-button [routerLink]="['/editArtist', artist._id]" *ngIf="identity.role == 'roleAdministrator'">Editar</button>
+                    <button mat-button *ngIf="identity.role == 'roleAdministrator'" (click)="onDeleteConfirm(artist._id)">Borrar</button>
+                    <div class="seguro" *ngIf="confirmado== artist._id">
+                        <button mat-button *ngIf="identity.role == 'roleAdministrator'" (click)="onDeleteArtist(artist._id)" color="warn">Eliminar</button>
+                        <button mat-button *ngIf="identity.role == 'roleAdministrator'" (click)="onCancelArtist()">Cancelar</button>
+                    </div>
+                </mat-card-actions>
+            </mat-card>
             </div>
         </div>
-        <div class="clearfix"></div>
-        <div id="galleryAlbums" *ngIf="albums">
-            <!-- listar los albums -->
-                hola
+        <div id="galleryAlbums" *ngIf="albums" class="col-lg-8">
+            <div class="row clearfix "></div>
+        
         </div>
 </div>

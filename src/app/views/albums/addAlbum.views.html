@@ -21,7 +21,7 @@
                 <input matInput  placeholder="Artista" disabled  value="{{artist.name}}"> 
         </mat-form-field>
         <mat-form-field *ngIf="isEdit" class="example-full-width col-lg-4">
-                <input matInput  placeholder="Artista" disabled  value="{{album.artist.name}}"> 
+                <input matInput  placeholder="Artista" disabled  value="{{album.artist?.name}}"> 
         </mat-form-field>
         
         <table class="col-lg-4" cellspacing="0">
