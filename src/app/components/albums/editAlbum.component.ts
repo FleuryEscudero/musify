@@ -19,6 +19,7 @@ export class editAlbumComponent implements OnInit {
 
     public titulo: string;
     public album: Album;
+    public albums : Album [];
     public artist : Artist;
     public identity;
     public token;
@@ -26,6 +27,7 @@ export class editAlbumComponent implements OnInit {
     public alertMessage;
     public isEdit;
     private filesToUpload;
+    public confirmado;
 
     constructor (
         private _userService:UserService,
@@ -128,4 +130,34 @@ public value;
         this.filesToUpload = <File>fileInput.target.files[0];
         console.log(this.filesToUpload)
   }
+
+  onDeleteConfirm (id){
+    this.confirmado = id;
+}
+
+onCancelAlbum(){
+    this.confirmado = null;
+}
+
+onDeleteAlbum (id){
+    this._albumService.deleteAlbum(this.token, id).subscribe (
+    // this._artistService.deleteArtist(this.token, id).subscribe ( 
+        response => {
+            debugger;
+         if(!response.albums){
+             alert('Album Borrado con Exito')
+         } 
+         this.getAlbum();
+    },
+        error =>{
+            var errorMessage =<any>error;
+            if(errorMessage != null){ 
+            console.log(error);
+            
+        // this.alertMessage = error.error.message;
+        }
+    })
+}
+
+
 }

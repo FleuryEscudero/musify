@@ -13,7 +13,10 @@ import { detailArtistComponent} from '../components/artists/detailsArtist.compon
 import { addAlbumComponent} from '../components/albums/addAlbum.component';
 import { albumListComponent } from '../components/albums/albumList.component';
 import { editAlbumComponent } from '../components/albums/editAlbum.component';
+import { detailAlbumComponent } from '../components/albums/detailsAlbum.component';
+
 import { AppComponent } from 'src/app/app.component';
+
 
 
 /*Crear las Rutas de los componentes */
@@ -29,6 +32,7 @@ const appRoutes:Routes = [
     {path:'newAlbum/:artist', component:addAlbumComponent},
     {path:'albumList/', component:albumListComponent},
     {path:'editAlbum/:id', component:editAlbumComponent},
+    {path:'detailsAlbum/:id',component:detailAlbumComponent},
     {path:'**', component:artistListComponent}
 
 ]

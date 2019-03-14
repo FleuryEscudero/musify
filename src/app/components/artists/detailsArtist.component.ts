@@ -25,7 +25,7 @@ export class detailArtistComponent implements OnInit {
     public token;
     public url;
     public alertMessage;
-    
+    public confirmado;
 
 
     constructor (
@@ -59,16 +59,20 @@ getArtist (){
                 if (!response.artist){
                     this._router.navigate(['/']);
                 }else {
+                    
                     this.artist = response.artist;
-
+                    
                     //sacar los albums del artista
                     this._albumService.getAlbums(this.token, response.artist._id).subscribe(
                         response =>{
                                 this.alertMessage="Este artista no tiene albums";
+                                
                             if (!response.albums){
-
+                               
+                                    //Redirect
                             }else {
                                 this.albums= response.albums;
+                                console.log(this.albums);
                             }
                         },
                         error =>{
@@ -95,7 +99,32 @@ getArtist (){
 }
     
 
-   
-      
+onDeleteConfirm (id){
+    this.confirmado = id;
+}
+
+onCancelAlbum(){
+    this.confirmado = null;
+} 
+
+onDeleteAlbum (id){
+    this._albumService.deleteAlbum(this.token, id).subscribe (
+    // this._artistService.deleteArtist(this.token, id).subscribe ( 
+        response => {
+           debugger; 
+         if(!response.album._id){
+             alert('Album Borrado con Exito')
+         } 
+         this.getArtist();
+    },
+        error =>{
+            var errorMessage =<any>error;
+            if(errorMessage != null){ 
+            console.log(error);
+            
+        // this.alertMessage = error.error.message;
+        }
+    })
+}
     
 }

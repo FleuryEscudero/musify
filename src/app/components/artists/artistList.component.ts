@@ -22,6 +22,7 @@ export class artistListComponent implements OnInit {
     public prevPage;
     public alertMessage;
     public page;
+    public confirmado;
 
     constructor (
         private _userService:UserService,
@@ -92,7 +93,7 @@ export class artistListComponent implements OnInit {
 }
 
 
-public confirmado;
+
 
 onDeleteConfirm (id){
     this.confirmado = id;

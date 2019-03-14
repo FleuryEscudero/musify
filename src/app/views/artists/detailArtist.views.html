@@ -14,16 +14,16 @@
             <hr style="border:1px solid; color:rgb(37, 36, 36)"/>
             <mat-card *ngFor="let album of albums" class="example-card col-lg-3">
                 <mat-card-header>
-                    <mat-card-title>{{album.name}}</mat-card-title>
+                    <mat-card-title>{{album.title}}</mat-card-title>
                     <mat-card-subtitle>{{album.description}}</mat-card-subtitle>
                 </mat-card-header>
-                <a [routerLink]="['/detailArtist/', artist._id]"><img width="206" height="206" class="rounded-circle" mat-card-image src="{{url+ 'getImageAlbum/'+ album.image}}" alt="Album Photo"></a>
+                <a [routerLink]="['/detailsAlbum/', album._id]"><img width="206" height="206" class="rounded-circle" mat-card-image src="{{url+ 'getImageAlbum/'+ album.image}}" alt="Album Photo"></a>
                 <mat-card-actions>
-                    <button mat-button [routerLink]="['/editArtist', artist._id]" *ngIf="identity.role == 'roleAdministrator'">Editar</button>
-                    <button mat-button *ngIf="identity.role == 'roleAdministrator'" (click)="onDeleteConfirm(artist._id)">Borrar</button>
-                    <div class="seguro" *ngIf="confirmado== artist._id">
-                        <button mat-button *ngIf="identity.role == 'roleAdministrator'" (click)="onDeleteArtist(artist._id)" color="warn">Eliminar</button>
-                        <button mat-button *ngIf="identity.role == 'roleAdministrator'" (click)="onCancelArtist()">Cancelar</button>
+                    <button mat-button [routerLink]="['/editAlbum', album._id]" *ngIf="identity.role == 'roleAdministrator'">Editar</button>
+                    <button mat-button *ngIf="identity.role == 'roleAdministrator'" (click)="onDeleteConfirm(album._id)">Borrar</button>
+                    <div class="seguro" *ngIf="confirmado== album._id">
+                        <button mat-button *ngIf="identity.role == 'roleAdministrator'" (click)="onDeleteAlbum(album._id)" color="warn">Eliminar</button>
+                        <button mat-button *ngIf="identity.role == 'roleAdministrator'" (click)="onCancelAlbum()">Cancelar</button>
                     </div>
                 </mat-card-actions>
             </mat-card>

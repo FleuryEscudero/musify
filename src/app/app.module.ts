@@ -7,7 +7,7 @@ import { routing, appRoutingProviders } from './routes/app.routes';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule,MatButtonModule,MatFormFieldModule,MatInputModule,MatRippleModule,MatIconModule,MatPaginatorModule,
-         MatCardTitle,MatCard,MatCardActions,MatCardSubtitle,MatCardHeader,MatCardContent} from '@angular/material';
+         MatCardTitle,MatCard,MatCardActions,MatCardSubtitle,MatCardHeader,MatCardContent,MatHeaderRowDef} from '@angular/material';
 import { MatFileUploadModule } from 'angular-material-fileupload';
 //Modulos de la aplicación
 import { AppComponent } from './app.component';
@@ -21,6 +21,8 @@ import { detailArtistComponent} from './components/artists/detailsArtist.compone
 import { addAlbumComponent } from './components/albums/addAlbum.component';
 import { albumListComponent } from './components/albums/albumList.component';
 import { editAlbumComponent } from './components/albums/editAlbum.component';
+import { detailAlbumComponent } from './components/albums/detailsAlbum.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,13 +36,16 @@ import { editAlbumComponent } from './components/albums/editAlbum.component';
     addAlbumComponent,
     albumListComponent,
     editAlbumComponent,
+    detailAlbumComponent,
+    
     //modulos de MatIcons
     MatCardTitle,
     MatCard,
     MatCardActions,
     MatCardSubtitle,
     MatCardHeader,
-    MatCardContent
+    MatCardContent,
+    MatHeaderRowDef
         
   ],
   imports: [
@@ -59,6 +64,7 @@ BrowserModule,
     MatFileUploadModule,
     MatIconModule,
     MatPaginatorModule,
+    
     
    
   ],

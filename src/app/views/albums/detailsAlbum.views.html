@@ -1,0 +1,50 @@
+<div class="header">
+    
+</div>
+
+<div class="container row">
+    <div class="col col-lg-2" style="vertical-align: unset">
+            <img style="align-content: center" width="150" height="150" class="rounded-circle" 
+            mat-card-image src="{{url+ 'getImageArtist/'+ album?.artist.image}}">
+        <h3 style="text-align: center">{{album?.artist.name}}</h3>
+        <p style="text-align: center">{{album?.artist.description}}</p>
+    </div>
+    <div class="col col-lg10" style="text-align: center"> 
+        <h1>{{album?.title}}</h1>
+        <div>
+                <img style="margin-top: 15px; margin-bottom:20px;" width="350" height="350"
+                mat-card-image src="{{url+ 'getImageAlbum/'+ album?.image}}">
+        </div>
+        <table class="table table-dark" style="color: lightgray; background: black" >
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+                  
+    </div>
+</div>
