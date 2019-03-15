@@ -35,7 +35,7 @@ export class addAlbumComponent implements OnInit {
         this.identity= this._userService.getIdentity();
         this.token= this._userService.getToken();
         this.url = GLOBAL.url;
-        this.album = new Album ('','',2017,'','');
+        this.album = new Album ('','',2017,'',this.artist);
         this.artist = new Artist ('','','');
 
     }
@@ -52,20 +52,22 @@ public value;
   }
 
     onSubmit(){
+        
         this._route.params.forEach((params: Params) =>{
             let artistId = params ['artist'];
             this.album.artist = artistId;
             //esta sentencia inyecta la informacion a la base de datos
             this._albumService.addAlbum(this.token, this.album).subscribe(
                 response => {
-                    //debugger;
+                  
                     if (!response.album){
                         this.alertMessage='El album no se ha creado';
                     }else { 
+                        
                         this.alertMessage='El album se ha creado correctamente';
                         this.album = response.album;
 
-                        this._router.navigate(['/editAlbum', this.album._id]);
+                        this._router.navigate(['/editAlbum', response.album._id]);
                     }
             },
             error => {

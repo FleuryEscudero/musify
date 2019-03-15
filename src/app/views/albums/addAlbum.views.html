@@ -7,13 +7,9 @@
                 {{alertMessage}}
                 </div>  
         </div>
-        <div *ngIf="!isEdit">
-                <img width="206" height="206" class="rounded-circle"
-                mat-card-image src="{{url+ 'getImageArtist/'+ artist.image}}" alt="Artist Photo">
-        </div>
         <div *ngIf="isEdit">
                         <img width="206" height="206"
-                        mat-card-image src="{{url+ 'getImageAlbum/'+ album.image}}" alt="Artist Photo">
+                        mat-card-image src="{{url+ 'getImageAlbum/'+ song.album.image}}" alt="Artist Photo">
                 </div>
 <form #newAlbumForm="ngForm" class="newAlbumForm " (ngSubmit)="onSubmit()">
           <br/>     

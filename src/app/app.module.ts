@@ -22,6 +22,9 @@ import { addAlbumComponent } from './components/albums/addAlbum.component';
 import { albumListComponent } from './components/albums/albumList.component';
 import { editAlbumComponent } from './components/albums/editAlbum.component';
 import { detailAlbumComponent } from './components/albums/detailsAlbum.component';
+import { addSongComponent } from './components/songs/addSong.component';
+import { editSongComponent } from './components/songs/editSong.components';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { detailAlbumComponent } from './components/albums/detailsAlbum.component
     albumListComponent,
     editAlbumComponent,
     detailAlbumComponent,
+    addSongComponent,
+    editSongComponent,
     
     //modulos de MatIcons
     MatCardTitle,

@@ -2,12 +2,16 @@
     
 </div>
 
-<div class="container row">
-    <div class="col col-lg-2" style="vertical-align: unset">
+<div class="container row" style="align-content: center">
+    <div class="col col-lg-2" style="align-content: center" >
             <img style="align-content: center" width="150" height="150" class="rounded-circle" 
             mat-card-image src="{{url+ 'getImageArtist/'+ album?.artist.image}}">
         <h3 style="text-align: center">{{album?.artist.name}}</h3>
         <p style="text-align: center">{{album?.artist.description}}</p>
+        <div *ngIf ="identity.role=='roleAdministrator'" class="botonDefault" style="align-content: center">
+        <button type="button" class="btnAdd btn btn-link" style="text-align: center" 
+        [routerLink]="['/addSong',album?._id]"><mat-icon>music_note</mat-icon>+</button>
+      </div>
     </div>
     <div class="col col-lg10" style="text-align: center"> 
         <h1>{{album?.title}}</h1>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpResponse, HttpClient} from '@angular/common/http';
-import { map } from "rxjs/operators";
+
 import { Observable } from 'rxjs';
 import { GLOBAL } from './global';
 import { Song } from '../models/song.models';
@@ -31,10 +31,11 @@ getSongs (token, albumId: null): Observable<any>{
     }
 }
 
-addSong (token, song:Song){
-    let params = JSON.stringify(Song);
+addSong (token, song: Song){
+    debugger;
+    let params = JSON.stringify(song);
     let headers = new HttpHeaders ({'Content-Type':'application/json', 'Authorization':token});
-    console.log(Song);
+    console.log(song);
     return this.http.post<any>(this.url+'song',params, {headers: headers});
 
 }

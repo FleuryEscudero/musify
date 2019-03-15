@@ -111,8 +111,8 @@ onDeleteAlbum (id){
     this._albumService.deleteAlbum(this.token, id).subscribe (
     // this._artistService.deleteArtist(this.token, id).subscribe ( 
         response => {
-           debugger; 
-         if(!response.album._id){
+        //    debugger; 
+         if(!this.album){
              alert('Album Borrado con Exito')
          } 
          this.getArtist();

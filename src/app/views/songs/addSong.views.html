@@ -1,0 +1,69 @@
+<div class="header">
+    <h1>{{titulo}}</h1>
+</div>
+
+<div class="container col-lg-8"  style="align-content: center">
+    <div *ngIf="alertMessage">     
+            <div class="alert alert-success" role="alert">
+            {{alertMessage}}
+            </div>  
+    </div>
+    <div *ngIf="!isEdit"  style="align-content: center">
+            <img  style="align-content: center" width="206" height="206" 
+            mat-card-image src="{{url+ 'getImageAlbum/'+ album?.image}}" alt="Album Photo">
+    </div>
+<form #newSongForm="ngForm" class="newSongForm " (ngSubmit)="onSubmit()">
+      <br/>
+      <mat-form-field *ngIf="!isEdit" class="example-full-width col-lg-12">
+        <input matInput  placeholder="Album" disabled  value="{{album.title}}"> 
+    </mat-form-field> 
+    <br/>    
+    <mat-form-field *ngIf="!isEdit" class="Numero col-lg-1">
+        <input class="inputForm" matInput #number="ngModel" name="number" placeholder="Numero" 
+                                [(ngModel)]="song.number" required>
+                                <button mat-button *ngIf="song.number" matSuffix mat-icon-button aria-label="Clear"
+                                        (click)="song.number=''">
+                                        <mat-icon>close</mat-icon>       
+                                </button>
+    </mat-form-field> 
+    <mat-form-field *ngIf="!isEdit" class="Nombre col-lg-8">
+        <input class="inputForm" matInput #nombre="ngModel" name="nombre" placeholder="Titulo de la canción" 
+        [(ngModel)]="song.name" required>
+        <button mat-button *ngIf="song.name" matSuffix mat-icon-button aria-label="Clear"
+                (click)="song.name=''">
+                <mat-icon>close</mat-icon>       
+        </button> 
+    </mat-form-field>
+    <mat-form-field *ngIf="!isEdit" class="Duracion col-lg-2">
+        <input class="inputForm" matInput #duration="ngModel" name="duration" placeholder="Duración" 
+        [(ngModel)]="song.duration" required>
+        <button mat-button *ngIf="song.duration" matSuffix mat-icon-button aria-label="Clear"
+                (click)="song.duration=''">
+                <mat-icon>close</mat-icon>       
+        </button> 
+    </mat-form-field>
+    <div *ngIf="isEdit">
+        <div class="songFileForEdit" *ngIf="song.file && song.file != 'null'">
+            <audio controls>
+                <source src="{{url + 'getSongFile/' + song.file}}" type="audio/mpeg">
+                    Tu navegador web no soporta la reproducción de audio
+            </audio>
+        </div>
+        <p>
+        <label>Sube el archivo de audio</label>
+        <br>
+        <Input type="file" placeholder="Subir archivo..." (change)="songFileChangeEvent($event)"/>
+        </p>
+        <br>
+        
+       
+       
+</div>
+<div style="float:right">
+<button  type="button submit" value="{{titulo}}"  class=" btn btn-success">Entrar</button>
+<!-- <button mat-button [routerLink]="['/editSong', song._id]" *ngIf="identity.role == 'roleAdministrator'">Guardar</button> -->
+</div>
+    </form>
+    
+  
+</div>

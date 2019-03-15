@@ -42,7 +42,7 @@ export class editAlbumComponent implements OnInit {
         this.token= this._userService.getToken();
         this.url = GLOBAL.url;
         this.artist = new Artist ('','','');
-        this.album = new Album ('','',2017,'','');
+        this.album = new Album ('','',2017,'',this.artist);
         this.artist = new Artist ('','','');
         this.isEdit=true;
 
@@ -65,7 +65,7 @@ public value;
             //esta sentencia inyecta la informacion a la base de datos
             this._albumService.updateAlbum(this.token,id ,this.album).subscribe(
                 response => {
-                    // debugger;
+                     
                     if (!response.album){
                         console.log(response.album);
                         this.alertMessage='Error en el sistema';
@@ -74,7 +74,7 @@ public value;
                         this.alertMessage='El album se ha creado correctamente';
                         if (!this.filesToUpload){
                             //Redirigir
-                            this._router.navigate(['/artist/',response.album.artist]);
+                            this._router.navigate(['/artist/',response.artist._id]);
                             console.log(response.album.artist);
                         }else {
                             //subir imagen
@@ -83,7 +83,7 @@ public value;
                                .then(
                                    (response)=> {
                                        
-                                       this._router.navigate(['/detailArtist/',this.album.artist._id]);
+                                       this._router.navigate(['/detailArtist/',this.album.artist]);
                                    },(error) =>{
                                        console.log(error);
                                    }
@@ -144,7 +144,7 @@ onDeleteAlbum (id){
     // this._artistService.deleteArtist(this.token, id).subscribe ( 
         response => {
             debugger;
-         if(!response.albums){
+         if(!this.albums){
              alert('Album Borrado con Exito')
          } 
          this.getAlbum();

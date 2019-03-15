@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpResponse, HttpClient} from '@angular/common/http';
-import { map } from "rxjs/operators";
+
 import { Observable } from 'rxjs';
 import { GLOBAL } from './global';
 import { Artist } from '../models/artist.models';

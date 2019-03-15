@@ -1,10 +1,17 @@
-export class Song {
+
+import { Album } from './album.models';
+
+export class Song  {
+    
+   
+
     constructor (
+
         public number:number,
         public name:string,
         public duration: string,
         public file:string,
-        public album: string      
+        public album: Album  
     ){
 
     }
