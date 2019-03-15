@@ -23,7 +23,7 @@ import { albumListComponent } from './components/albums/albumList.component';
 import { editAlbumComponent } from './components/albums/editAlbum.component';
 import { detailAlbumComponent } from './components/albums/detailsAlbum.component';
 import { addSongComponent } from './components/songs/addSong.component';
-import { editSongComponent } from './components/songs/editSong.components';
+import { editSongComponent } from './components/songs/editSong.component';
 
 
 @NgModule({
